@@ -55,14 +55,12 @@ async def done(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return ConversationHandler.END
 
     total = 0
-    text_lines = ["Ваша смета:
-"]
+    text_lines = ["Ваша смета:\n"]
     for service, qty, price in user_cart[user_id]:
         line_total = qty * price
         total += line_total
         text_lines.append(f"• {service} — {qty} × {price} ₽ = {line_total:.2f} ₽")
-    text_lines.append(f"
-ИТОГО: {total:.2f} ₽")
+    text_lines.append(f"\nИТОГО: {total:.2f} ₽")
     full_text = "\n".join(text_lines)
 
     await update.message.reply_text(full_text)
